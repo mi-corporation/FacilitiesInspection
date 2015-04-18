@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Facilities Inspection</title>
+    <link rel="stylesheet" href="lib/f7/css/framework7.min.css">
+    <link rel="stylesheet" href="lib/ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="css/my-app.css">
+    <script type="text/javascript" src="lib/f7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/Mi-JS/MiCo.MiApp.MiJS.js"></script>
+    <script type="text/javascript" src="lib/Mi-JS/aes.js"></script>
+    <script type="text/javascript" src="lib/Mi-JS/Barrett.js"></script>
+    <script type="text/javascript" src="lib/Mi-JS/BigInt.js"></script>
+    <script type="text/javascript" src="lib/Mi-JS/RSA.js"></script>
+</head>
+<body>
+    <!-- Login - Should be a direct child of BODY -->
+    <div class="login-screen  modal-in">
+        <!-- Default view-page layout -->
+        <div class="view">
+            <div class="page">
+                <!-- page-content has additional login-screen content -->
+                <div class="page-content login-screen-content">
+                    <div class="login-screen-title">Facilities Inspection</div>
+                    <!-- Login form -->
+                    <form>
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Customer</div>
+                                        <div class="item-input">
+                                            <input type="text" name="customer" placeholder="Customer Name" autocomplete="off" autocapitalize="off">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Username</div>
+                                        <div class="item-input">
+                                            <input type="text" name="username" placeholder="Username" autocomplete="off" autocapitalize="off">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div id="signInPassword" class="item-inner">
+                                        <div class="item-title label">Password</div>
+                                        <div class="item-input">
+                                            <input type="password" name="password" placeholder="Password" autocomplete="off" autocapitalize="off">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="trySignIn" class="list-block">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link list-button"><i class="ion-log-in" font-size="20pt"></i> Sign In</a>
+                                </li>
+                            </ul>
+                            <div class="list-block-label">Please enter your Mi-Enterprise Apps Customer Name, Username, and Password.</div>
+                        </div>
+
+
+                        <div id="serverSettings" style="display:none;">
+                            <div class="list-block">
+                                <div class="list-block-label"><b>Server Settings</b></div>
+                                <ul>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Server Hostname</div>
+                                            <div class="item-input">
+                                                <input type="text" name="serverHostname" placeholder="Server Hostname" autocomplete="off" autocapitalize="off">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Port</div>
+                                            <div class="item-input">
+                                                <input type="number" name="serverPort" placeholder="Port" value="80">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">URLPrefix</div>
+                                            <div class="item-input">
+                                                <input type="text" name="serverUrlPrefix" placeholder="URL Prefix" value="MFS" autocomplete="off" autocapitalize="off" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">SSL</div>
+                                            <div class="item-input">
+                                                <input type="checkbox" name="serverSSL" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list-block">
+                                <div class="list-block-label"><b>Data Replication Server Settings</b></div>
+                                <ul>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">URL Prefix</div>
+                                            <div class="item-input">
+                                                <input type="text" name="drURLPrefix" placeholder="Data Replication URL Prefix" value="DRS" autocomplete="off" autocapitalize="off">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Resource Name</div>
+                                            <div class="item-input">
+                                                <input type="text" name="drResourceName" placeholder="Data Replication Resource Name" autocomplete="off" autocapitalize="off">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="btnServerSettings" class="list-block">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link list-button"><i class="ion-gear-b" font-size="20pt"></i> Adjust Server Settings</a>
+                                </li>
+                            </ul>
+                            <div class="list-block-label"></div>
+                        </div>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Views-->
+    <div class="views">
+        <!-- Put panels-overlay and left-panel with view inside of views-->
+        <!-- Panels overlay-->
+        <div class="panel-overlay"></div>
+        <!-- Left panel with reveal effect-->
+        <div class="panel panel-left panel-cover">
+            <!-- Left view-->
+            <div class="view view-left navbar-through">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left"></div>
+                        <div class="center sliding">Menu</div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+                <div class="pages">
+                    <div data-page="index-left" class="page">
+                        <div class="page-content">
+                            <div class="list-block">
+                                <ul>
+                                    <li>
+                                        <div class="page-content">
+                                            <div class="content-block-title" style="display:none;"><i class="ion-ios7-search"></i> Facilities Search</div>
+                                            <div class="list-block" style="display:none;">
+                                                <ul>
+                                                    <li style="display:none;">
+                                                        <div class="item-title label">Name</div>
+                                                        <div class="item-content">
+                                                            <div class="item-input">
+                                                                <input id="searchFacilityName" type="text" placeholder="Facility name">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="item-title label">Type</div>
+                                                        <div id="searchFacilityType" class="item-content">
+                                                            <ul>
+                                                                <li>
+                                                                    <label class="label-checkbox item-content">
+                                                                        <input type="checkbox" name="ks-checkbox" value="1" checked>
+                                                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                                                        <div class="item-inner">
+                                                                            <div class="item-title">Education</div>
+                                                                        </div>
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="label-checkbox item-content">
+                                                                        <input type="checkbox" name="ks-checkbox" value="2" checked>
+                                                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                                                        <div class="item-inner">
+                                                                            <div class="item-title">Government</div>
+                                                                        </div>
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="label-checkbox item-content">
+                                                                        <input type="checkbox" name="ks-checkbox" value="3" checked>
+                                                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                                                        <div class="item-inner">
+                                                                            <div class="item-title">Industrial</div>
+                                                                        </div>
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="label-checkbox item-content">
+                                                                        <input type="checkbox" name="ks-checkbox" value="4" checked>
+                                                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                                                        <div class="item-inner">
+                                                                            <div class="item-title">Medical</div>
+                                                                        </div>
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <label class="label-checkbox item-content">
+                                                                        <input type="checkbox" name="ks-checkbox" value="5" checked>
+                                                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                                                        <div class="item-inner">
+                                                                            <div class="item-title">Retail</div>
+                                                                        </div>
+                                                                    </label>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                    </li>
+
+                                    <li>
+                                        <a href="index.html" data-view=".view-main" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title"><i class="ion-home"></i> Home</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="assignedInspections.html" data-view=".view-main" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title"><i class="ion-calendar"></i> Assigned Inspections</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="facilities.html" data-view=".view-main" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title"><i class="ion-ios7-search"></i> Search Facilities</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="about.html" data-view=".view-main" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title"><i class="ion-information-circled"></i> About</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html" class="open-login-screen close-panel">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title"><i class="ion-log-out"></i> Sign Out</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Right view, it is main view-->
+        <div class="view view-main navbar-through">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left"><i class="ion-home"></i></div>
+                    <div class="center">Facilities Inspection</div>
+                    <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                </div>
+            </div>
+            <!-- Pages-->
+            <div class="pages">
+
+                <!-- Page, data-page contains page name			-->
+                <div data-page="home" class="page">
+
+                    <div class="page-content">
+
+                        <div class="list-block">
+                            <ul>
+                                <a href="assignedInspections.html" class="item-link">
+                                    <li class="item-content">
+                                        <div class="item-media"><i class="ion-calendar" style="font-size:35px;"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Assigned Inspections</div>
+                                            <div class="item-after"></div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a href="facilities.html" class="item-link">
+                                    <li class="item-content">
+                                        <div class="item-media"><i class="ion-ios7-search" style="font-size:35px;"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Search Facilities</div>
+                                            <div class="item-after"></div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Templates-->
+    <script id="templateListFacility" type="text/template">
+        <ul>
+            {{#each rows}}
+            <li>
+                <a href="facility.html?i={{facilityID}}&n={{name}}&d={{description}}&p={{phone}}&a={{address}}&l={{location}}&z={{zip}}&c={{contact}}&t={{type}}" class="item-link item-content" data-view=".view-main">
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">{{name}}</div>
+                            <div class="item-after">{{location}}</div>
+                        </div>
+                        <div class="item-text">{{type}}</div>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script id="templateFacility" type="text/template">
+        <div id="facilityName" class="content-block-title">{{name}}</div>
+        <div class="content-block">{{description}}</div>
+        <div class="content-block inset">{{address}}<br />{{city}}, {{state}} {{zip}}<br />{{phone}}<br />Contact: {{contact}}</div>
+    </script>
+
+    <script id="templateListInspections" type="text/template">
+        <a href="#" class="item-link smart-select">
+            <select id="inspections" name="Inspections">
+                {{#each inspections}}
+                <option value="{{inspectionID}}">{{status}} - {{date}} - {{contact}}</option>
+                {{/each}}
+            </select>
+            <div class="item-content">
+                <div class="item-inner">
+                    <!-- Select label -->
+                    <div class="item-title">Existing Inspections</div>
+                    <!-- Selected value, not required -->
+                    <div class="item-after">{{number}}</div>
+                </div>
+            </div>
+        </a>
+    </script>
+
+    <!-- Templates-->
+    <script id="templateListAssignedInspections" type="text/template">
+        <ul>
+            {{#each appDataBundles}}
+            <li>
+                <a href="inspection.html?bId={{_id}}&t=assigned" class="item-link item-content" data-view=".view-main">
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title">{{name}}</div>
+                            <div class="item-after">{{description}}</div>
+                        </div>
+                        <div class="item-text">{{_queue}}</div>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script type="text/javascript" src="js/CONFIG.js"></script>
+    <script type="text/javascript" src="js/tools.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/facilities.js"></script>
+    <script type="text/javascript" src="js/facility.js"></script>
+    <script type="text/javascript" src="js/inspection.js"></script>
+    <script type="text/javascript" src="js/assignedInspections.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+</body>
+</html>

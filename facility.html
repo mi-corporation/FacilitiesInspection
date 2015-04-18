@@ -1,0 +1,37 @@
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>
+        <div class="center sliding">Facility Details</div>
+        <div class="right">
+            <a href="#" data-panel="left" class="link open-panel icon-only">
+                <i class="icon icon-bars"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="pages">
+    <div data-page="facility" class="page">
+        <div id="facilityID" style="display:none;"></div>
+        <div class="page-content">
+            <div id="facilityInfo" class="content-block">
+            </div>
+            <div class="content-block">
+                <div class="content-block-title">Inspections</div>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <p><a href="inspection.html?t=new" data-view=".view-main" class="button">Add a New Inspection for this Facility</a></p>
+                        </li>
+                        <li>
+                            <div id="inspectionsList"></div>
+                        </li>
+                        <li id="editExistingInspectionListItem" style="display:none;">
+                            <p><a href="inspection.html?t=edit" data-view=".view-main" class="button"><i class="" font-size="20pt"></i>Edit the Selected Inspection for this Facility</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>
+        <div class="center">Search Facilities</div>
+        <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+    </div>
+</div>
+
+<!-- Pages-->
+<div class="pages">
+
+    <!-- Page, data-page contains page name			-->
+    <div data-page="facilities" class="page">
+        <div id="availableFacilitiesSync" class="left"><i class="ion-refresh"></i> Get Facilities</div>
+
+        <!-- Search bar -->
+        <form class="searchbar" data-search-list=".list-block-search" data-search-in=".item-title" data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found">
+            <div class="searchbar-input">
+                <input type="search" placeholder="Search Facilities by Name">
+                <a href="#" class="searchbar-clear"></a>
+            </div>
+            <a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
+
+        <!-- Search bar overlay-->
+        <div class="searchbar-overlay"></div>
+
+        <div class="page-content">
+            <div class="content-block">
+                <div class="content-block-inner">
+                    <span id="syncMessage"></span>
+                </div>
+            </div>
+            <div class="content-block searchbar-not-found">
+                No facilities found
+            </div>
+            <div id="availableFacilitiesList" class="list-block list-block-search searchbar-found">
+            </div>
+        </div>
+
+    </div>
+</div>
