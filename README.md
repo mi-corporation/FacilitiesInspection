@@ -4,7 +4,15 @@ A Mi-Enterprise Apps hybrid app project
 About
 This app demonstrates a simple use case where facilities are inspected. The app has access to a local database of existing facilities and in-process inspections assigned to the user. User roles are defined using the Mi-Enterprise Apps Server which also handles data workflow and exports to Download Center and Mi-Analytics.
 
-Technical DetailsThe Facilities Inspection app is a demonstration hybrid iOS / Android app using Cordova and HTML/JS/CSS. 
+Installation
+Use Cordova CLI to create a new Cordova project and use the www files. Add the following plugins:
+org.apache.cordova.network-information
+com.MiCo.MiApp.DataReplication.Plugin
+
+Build the project for iOS or Android.
+
+Technical Details
+The Facilities Inspection app is a demonstration hybrid iOS / Android app using Cordova and HTML/JS/CSS. 
 
 It uses the following Mi-Corporation products:
 
